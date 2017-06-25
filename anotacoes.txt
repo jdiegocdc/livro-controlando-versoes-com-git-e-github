@@ -1,0 +1,21 @@
+-Capítulo 1 -- Introdução
+
+1.   Sem dúvida, é interessante manter o histórico do código dos projetos, para entendermos como chegamos até ali. Mas manter esse histórico junto ao código atual, com o decorrer do tempo, deixa nossos projetos confusos, poluídos com trechos e comentários que poderiam ser excluídos sem afetar o funcionamento do sistema.
+     Seria bom se houvesse uma maneira de navegarmos pelo código do passado, como uma máquina do tempo para código...
+
+2.   Construir um sistema em equipe é um grande desafio. Nosso código tem que se integrar de maneira transparente e sem emendas com o código de todos os outros membros da nossa equipe.
+     Como podemos detectar que estamos alterando o mesmo código que um colega? Como mesclar as alterações que fizemos com as demais alterações da equipe? E como identificar conflitos entre essas alterações? Fazer isso manualmente, com cadernetas ou planilhas e muita conversa parece trabalhoso demais e bastante suscetível a erros e esquecimentos.
+     Seria bom que tivéssemos em robô de integração de código, que fizesse todo esse trabalho automaticamente...
+
+3.   Existem ferramentas que funcionam como máquinas do tempo e robôs de integração para o seu código. Elas nos permitem acompanhar as alterações desde as versões mais antigas. Também é possível detectar e mesclar alterações nos mesmos arquivos, além de identificar conflitos, tudo de maneira automática.
+     Essas ferramentas são chamadas de sistemas de controle de versão(software com a finalidade de gerenciar diferentes versões no desenvolvimento de um documento qualquer). Esses sistemas são comumente utilizados no desenvolvimento de software para controlar as diferentes versões, histórico e desenvolvimento dos códigos-fontes e também da documentação.
+     Nesse tipo de ferramenta, há um repositório(lugar onde se guarda, arquiva, coleciona alguma coisa) que nos permite obter qualquer versão já existente do código. Sempre que quisermos controlar as versões de algum arquivo, temos que informar que queremos rastreá-lo no repositório. A cada mudança que desejamos efetivar, devemos aramazenar as alterações nesse repositório.
+     Alterações nos mesmos arquivos são mescladas de maneira automática sempre que possível. Já possíveis conflitos são identificados a cada vez que obtemos as mudanças dos nossos colegas de time.
+     Alguns exemplos de sistemas de controle de versão mais antigos são CVS, ClearCase, SourceSafe e SVN(que ainda é bastante usado nas empresas).
+     Em meados da década de 2000, surgiram sistemas de controle de versão mais modernos, mais rápidos e confiáveis, como Mercurial, Bazaar e, é claro, Git.
+
+4.   O Git é um sistema de controle de versão que, pela sua estrutura interna, é uma máquina do tempo extremamente rápida e é um robô de integração bem competente.
+
+5.   O GitHub, é uma aplicação Web que possibilita a hospedagem de repositórios Git, além de servir como uma rede social para programadores.
+
+6. A utilização do Git não é restrita apenas ao desenvolvimento de software, muitos administradores de rede, por exemplo, utilizam o Git para manter o histórico de evolução de arquivos de configuração em servidores.
