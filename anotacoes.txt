@@ -18,4 +18,55 @@
 
 5.   O GitHub, é uma aplicação Web que possibilita a hospedagem de repositórios Git, além de servir como uma rede social para programadores.
 
-6. A utilização do Git não é restrita apenas ao desenvolvimento de software, muitos administradores de rede, por exemplo, utilizam o Git para manter o histórico de evolução de arquivos de configuração em servidores.
+6.   A utilização do Git não é restrita apenas ao desenvolvimento de software, muitos administradores de rede, por exemplo, utilizam o Git para manter o histórico de evolução de arquivos de configuração em servidores.
+
+---------------------------------------
+-Capítulo 2 -- Tour prático
+
+1.   É importante nos identificarmos para o Git, informando nosso nome e e-mail. Em um terminal, execute os comandos a seguir:
+$ git config --global user.name "<nomeDoUsuario>"
+$ git config --glboal user.email "<emailDoUsuario>"
+
+2.   A pasta pessoal (ou home directory, em inglês) é o local dos arquivos de usuário como documentos, fotos, músicas etc.
+     Se você não souber onde é pasta pessoal, digite o seguinte comando em um terminal:
+$ echo ~
+
+3.   Para transformar o diretório atual em um repositório do Git, basta executar o comando git init, que cria uma pasta oculta com o nome .git:
+$ git init
+
+4.   Podemos ver a situação dos arquivos no repositório Git com o comando git status:
+$ git status
+
+4.   Para que um arquivo seja rastreado pelo Git, devemos executar o comando git add:
+$ git add <nomeDoArquivo>
+
+5.   Após o git add o conteúdo do arquivo passa a ser rastreado pelo Git, mas ainda não foi gravado(ou commitado, em uma linguagem mais técnica) no repositório.
+
+6.   Para gravarmos as mudanças no repositório, devemos executar o comando git commit com a opão -m para informar a mensagem do commit:
+$ git commit -m "<mensagemDoCommit>"
+
+7.   Para rastrearmos uma modificação, devemos executar o comando git add novamente:
+$ git add <nomeDoArquivoModificado>
+
+8.   Com a modificação rastreada, podemos gravá-la no repositório, com o comando git commit com a opção -m para informar a mensagem do commit:
+$ git commit -m "<mensagemDoCommit>"
+
+9.   Para verificar o histórico das alterações gravadas no repositório, podemos executar o comando git log:
+$ git log
+
+10.  Para criar um novo repositório no GitHub após criarmos uma conta, primeiramente acessamos a url https://github.com/new, o próximo passo é preencher no campo 'Repository name' com o nome do nosso repositório. Deixe o repositório como Public, para que qualquer pessoa consiga ver seu código. As demais opções podem ficar com os valores padrão. Para finalizar, devemos clicar em 'Create repository'. Pronto foi criado um repositório vazio lá no GitHub.
+
+11.  Devemos apontar o repositório da nossa máquina para o repositório do GitHub. Podemos fazer isso com o comando git remote:
+$ git remote add <apelidoParaRepositorioRemoto> <urlDoRepositorioRemoto>
+
+12.  Com o comando anterior, apontamos o nome <apelidoParaRepositorioRemoto> para o repositório lá do GitHub.
+
+13.  Com o repositório remoto configurado, podemos enviar nossas mudanças para o GitHub e, por consequência, para todo o mundo. Para isso, basta executar o comando git push:
+$ git push <apelidoDadoAoRepositorioRemoto> <nomeDaBranchParaEnvio>
+
+14.  É possível ver todas as alterações no projeto até agora, através do endereço: https://github.com/<nomeDoUsuario>/<nomeDoRepositorio>/commits/<nomeDaBranch>
+
+15.  Com o projeto no GitHub, qualquer um pode acessar o código e ver o histórico, mesmo sem uma conta. Se a pessoa tiver cadastrada no GitHub, será possível baixar o código. Podemos clonar um repositório hospedado no GitHub em nossa máquina executando o comando git clone:
+$ git clone <urlDoRepositorioRemoto>
+
+16.  Git e GitHub não são a mesma coisa. O Git é o sistema de controle de versões, com o qual interagimos na linha de comando. Já o GitHub é uma rede social para programadores que disponibiliza repositórios Git acessíveis remotamente. O GitHub é muito utilizado para projetos open source que possuem vários colaboradores do mundo todo.
