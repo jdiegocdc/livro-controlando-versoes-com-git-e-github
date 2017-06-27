@@ -1,72 +1,240 @@
 -Capítulo 1 -- Introdução
 
-1.   Sem dúvida, é interessante manter o histórico do código dos projetos, para entendermos como chegamos até ali. Mas manter esse histórico junto ao código atual, com o decorrer do tempo, deixa nossos projetos confusos, poluídos com trechos e comentários que poderiam ser excluídos sem afetar o funcionamento do sistema.
+1.	Sem dúvida, é interessante manter o histórico do código dos projetos, para entendermos como chegamos até ali. Mas manter esse histórico junto ao código atual, com o decorrer do tempo, deixa nossos projetos confusos, poluídos com trechos e comentários que poderiam ser excluídos sem afetar o funcionamento do sistema.
      Seria bom se houvesse uma maneira de navegarmos pelo código do passado, como uma máquina do tempo para código...
 
-2.   Construir um sistema em equipe é um grande desafio. Nosso código tem que se integrar de maneira transparente e sem emendas com o código de todos os outros membros da nossa equipe.
-     Como podemos detectar que estamos alterando o mesmo código que um colega? Como mesclar as alterações que fizemos com as demais alterações da equipe? E como identificar conflitos entre essas alterações? Fazer isso manualmente, com cadernetas ou planilhas e muita conversa parece trabalhoso demais e bastante suscetível a erros e esquecimentos.
-     Seria bom que tivéssemos em robô de integração de código, que fizesse todo esse trabalho automaticamente...
+2.	Construir um sistema em equipe é um grande desafio. Nosso código tem que se integrar de maneira transparente e sem emendas com o código de todos os outros membros da nossa equipe.
+	Como podemos detectar que estamos alterando o mesmo código que um colega? Como mesclar as alterações que fizemos com as demais alterações da equipe? E como identificar conflitos entre essas alterações? Fazer isso manualmente, com cadernetas ou planilhas e muita conversa parece trabalhoso demais e bastante suscetível a erros e esquecimentos.
+	Seria bom que tivéssemos em robô de integração de código, que fizesse todo esse trabalho automaticamente...
 
-3.   Existem ferramentas que funcionam como máquinas do tempo e robôs de integração para o seu código. Elas nos permitem acompanhar as alterações desde as versões mais antigas. Também é possível detectar e mesclar alterações nos mesmos arquivos, além de identificar conflitos, tudo de maneira automática.
-     Essas ferramentas são chamadas de sistemas de controle de versão(software com a finalidade de gerenciar diferentes versões no desenvolvimento de um documento qualquer). Esses sistemas são comumente utilizados no desenvolvimento de software para controlar as diferentes versões, histórico e desenvolvimento dos códigos-fontes e também da documentação.
-     Nesse tipo de ferramenta, há um repositório(lugar onde se guarda, arquiva, coleciona alguma coisa) que nos permite obter qualquer versão já existente do código. Sempre que quisermos controlar as versões de algum arquivo, temos que informar que queremos rastreá-lo no repositório. A cada mudança que desejamos efetivar, devemos aramazenar as alterações nesse repositório.
-     Alterações nos mesmos arquivos são mescladas de maneira automática sempre que possível. Já possíveis conflitos são identificados a cada vez que obtemos as mudanças dos nossos colegas de time.
-     Alguns exemplos de sistemas de controle de versão mais antigos são CVS, ClearCase, SourceSafe e SVN(que ainda é bastante usado nas empresas).
-     Em meados da década de 2000, surgiram sistemas de controle de versão mais modernos, mais rápidos e confiáveis, como Mercurial, Bazaar e, é claro, Git.
+3.	Existem ferramentas que funcionam como máquinas do tempo e robôs de integração para o seu código. Elas nos permitem acompanhar as alterações desde as versões mais antigas. Também é possível detectar e mesclar alterações nos mesmos arquivos, além de identificar conflitos, tudo de maneira automática.
+	Essas ferramentas são chamadas de sistemas de controle de versão(software com a finalidade de gerenciar diferentes versões no desenvolvimento de um documento qualquer). Esses sistemas são comumente utilizados no desenvolvimento de software para controlar as diferentes versões, histórico e desenvolvimento dos códigos-fontes e também da documentação.
+	Nesse tipo de ferramenta, há um repositório(lugar onde se guarda, arquiva, coleciona alguma coisa) que nos permite obter qualquer versão já existente do código. Sempre que quisermos controlar as versões de algum arquivo, temos que informar que queremos rastreá-lo no repositório. A cada mudança que desejamos efetivar, devemos aramazenar as alterações nesse repositório.
+	Alterações nos mesmos arquivos são mescladas de maneira automática sempre que possível. Já possíveis conflitos são identificados a cada vez que obtemos as mudanças dos nossos colegas de time.
+	Alguns exemplos de sistemas de controle de versão mais antigos são CVS, ClearCase, SourceSafe e SVN(que ainda é bastante usado nas empresas).
+	Em meados da década de 2000, surgiram sistemas de controle de versão mais modernos, mais rápidos e confiáveis, como Mercurial, Bazaar e, é claro, Git.
 
-4.   O Git é um sistema de controle de versão que, pela sua estrutura interna, é uma máquina do tempo extremamente rápida e é um robô de integração bem competente.
+4.	O Git é um sistema de controle de versão que, pela sua estrutura interna, é uma máquina do tempo extremamente rápida e é um robô de integração bem competente.
 
-5.   O GitHub, é uma aplicação Web que possibilita a hospedagem de repositórios Git, além de servir como uma rede social para programadores.
+5.	O GitHub, é uma aplicação Web que possibilita a hospedagem de repositórios Git, além de servir como uma rede social para programadores.
 
-6.   A utilização do Git não é restrita apenas ao desenvolvimento de software, muitos administradores de rede, por exemplo, utilizam o Git para manter o histórico de evolução de arquivos de configuração em servidores.
+6.	A utilização do Git não é restrita apenas ao desenvolvimento de software, muitos administradores de rede, por exemplo, utilizam o Git para manter o histórico de evolução de arquivos de configuração em servidores.
 
 ---------------------------------------
 -Capítulo 2 -- Tour prático
 
-1.   É importante nos identificarmos para o Git, informando nosso nome e e-mail. Em um terminal, execute os comandos a seguir:
+1.	É importante nos identificarmos para o Git, informando nosso nome e e-mail. Em um terminal, execute os comandos a seguir:
 $ git config --global user.name "<nomeDoUsuario>"
 $ git config --glboal user.email "<emailDoUsuario>"
 
-2.   A pasta pessoal (ou home directory, em inglês) é o local dos arquivos de usuário como documentos, fotos, músicas etc.
-     Se você não souber onde é pasta pessoal, digite o seguinte comando em um terminal:
+2.	A pasta pessoal (ou home directory, em inglês) é o local dos arquivos de usuário como documentos, fotos, músicas etc.
+	Se você não souber onde é pasta pessoal, digite o seguinte comando em um terminal:
 $ echo ~
 
-3.   Para transformar o diretório atual em um repositório do Git, basta executar o comando git init, que cria uma pasta oculta com o nome .git:
+3.	Para transformar o diretório atual em um repositório do Git, basta executar o comando git init, que cria uma pasta oculta com o nome .git:
 $ git init
 
-4.   Podemos ver a situação dos arquivos no repositório Git com o comando git status:
+4.	Podemos ver a situação dos arquivos no repositório Git com o comando git status:
 $ git status
 
-4.   Para que um arquivo seja rastreado pelo Git, devemos executar o comando git add:
+4.	Para que um arquivo seja rastreado pelo Git, devemos executar o comando git add:
 $ git add <nomeDoArquivo>
 
-5.   Após o git add o conteúdo do arquivo passa a ser rastreado pelo Git, mas ainda não foi gravado(ou commitado, em uma linguagem mais técnica) no repositório.
+5.	Após o git add o conteúdo do arquivo passa a ser rastreado pelo Git, mas ainda não foi gravado(ou commitado, em uma linguagem mais técnica) no repositório.
 
-6.   Para gravarmos as mudanças no repositório, devemos executar o comando git commit com a opão -m para informar a mensagem do commit:
+6.	Para gravarmos as mudanças no repositório, devemos executar o comando git commit com a opão -m para informar a mensagem do commit:
 $ git commit -m "<mensagemDoCommit>"
 
-7.   Para rastrearmos uma modificação, devemos executar o comando git add novamente:
+7.	Para rastrearmos uma modificação, devemos executar o comando git add novamente:
 $ git add <nomeDoArquivoModificado>
 
-8.   Com a modificação rastreada, podemos gravá-la no repositório, com o comando git commit com a opção -m para informar a mensagem do commit:
+8.	Com a modificação rastreada, podemos gravá-la no repositório, com o comando git commit com a opção -m para informar a mensagem do commit:
 $ git commit -m "<mensagemDoCommit>"
 
-9.   Para verificar o histórico das alterações gravadas no repositório, podemos executar o comando git log:
+9.	Para verificar o histórico das alterações gravadas no repositório, podemos executar o comando git log:
 $ git log
 
-10.  Para criar um novo repositório no GitHub após criarmos uma conta, primeiramente acessamos a url https://github.com/new, o próximo passo é preencher no campo 'Repository name' com o nome do nosso repositório. Deixe o repositório como Public, para que qualquer pessoa consiga ver seu código. As demais opções podem ficar com os valores padrão. Para finalizar, devemos clicar em 'Create repository'. Pronto foi criado um repositório vazio lá no GitHub.
+10.	Para criar um novo repositório no GitHub após criarmos uma conta, primeiramente acessamos a url https://github.com/new, o próximo passo é preencher no campo 'Repository name' com o nome do nosso repositório. Deixe o repositório como Public, para que qualquer pessoa consiga ver seu código. As demais opções podem ficar com os valores padrão. Para finalizar, devemos clicar em 'Create repository'. Pronto foi criado um repositório vazio lá no GitHub.
 
-11.  Devemos apontar o repositório da nossa máquina para o repositório do GitHub. Podemos fazer isso com o comando git remote:
+11.	Devemos apontar o repositório da nossa máquina para o repositório do GitHub. Podemos fazer isso com o comando git remote:
 $ git remote add <apelidoParaRepositorioRemoto> <urlDoRepositorioRemoto>
 
-12.  Com o comando anterior, apontamos o nome <apelidoParaRepositorioRemoto> para o repositório lá do GitHub.
+12.	Com o comando anterior, apontamos o nome <apelidoParaRepositorioRemoto> para o repositório lá do GitHub.
 
-13.  Com o repositório remoto configurado, podemos enviar nossas mudanças para o GitHub e, por consequência, para todo o mundo. Para isso, basta executar o comando git push:
+13.	Com o repositório remoto configurado, podemos enviar nossas mudanças para o GitHub e, por consequência, para todo o mundo. Para isso, basta executar o comando git push:
 $ git push <apelidoDadoAoRepositorioRemoto> <nomeDaBranchParaEnvio>
 
-14.  É possível ver todas as alterações no projeto até agora, através do endereço: https://github.com/<nomeDoUsuario>/<nomeDoRepositorio>/commits/<nomeDaBranch>
+14.	É possível ver todas as alterações no projeto até agora, através do endereço: https://github.com/<nomeDoUsuario>/<nomeDoRepositorio>/commits/<nomeDaBranch>
 
-15.  Com o projeto no GitHub, qualquer um pode acessar o código e ver o histórico, mesmo sem uma conta. Se a pessoa tiver cadastrada no GitHub, será possível baixar o código. Podemos clonar um repositório hospedado no GitHub em nossa máquina executando o comando git clone:
+15.	Com o projeto no GitHub, qualquer um pode acessar o código e ver o histórico, mesmo sem uma conta. Se a pessoa tiver cadastrada no GitHub, será possível baixar o código. Podemos clonar um repositório hospedado no GitHub em nossa máquina executando o comando git clone:
 $ git clone <urlDoRepositorioRemoto>
 
-16.  Git e GitHub não são a mesma coisa. O Git é o sistema de controle de versões, com o qual interagimos na linha de comando. Já o GitHub é uma rede social para programadores que disponibiliza repositórios Git acessíveis remotamente. O GitHub é muito utilizado para projetos open source que possuem vários colaboradores do mundo todo.
+16.	Git e GitHub não são a mesma coisa. O Git é o sistema de controle de versões, com o qual interagimos na linha de comando. Já o GitHub é uma rede social para programadores que disponibiliza repositórios Git acessíveis remotamente. O GitHub é muito utilizado para projetos open source que possuem vários colaboradores do mundo todo.
+
+---------------------------------------
+-Capítulo 3 -- Trabalhando com repositório local
+
+1.	Press release: é uma das principais ferramentas de uma assessoria de imprensa quando o assunto é comunicação externa. Ele consiste basicamente em um texto, de cunho jornalístico, sobre um cliente específico ou sobre o tema do cliente. O press release não é enviado ao público em geral, mas, sim, diretamente ao jornalista, via e-mail. Justamente por isso, o material deve ser pensado para chamar a atenção logo no título, entre outras ações para otimizar essa ferramenta.
+
+2.	O subdiretório oculto chamado .git que é criado após o comando git init, é um repositório do Git completo, que conterá todo o histórico de alterações dos arquivos, entre outras coisas.
+
+3.	Podemos executar git init <nomeDaPasta> se quisermos criar um diretório vazio que já é um repositório Git, ou seja, que já possui o .git.
+
+4.	No caso de termos outros subdiretórios como js para armazenar código Javascript e css para armazenar arquivos CSS, todas as informações desses arquivos serão armazenados no mesmo .git.
+
+5.	Basta o comando git init para criar um repositório com Git, que já cria localmente um repositório completo. Isso é bem mais simples que diversos outros sistemas de controle de versão, como o SVN, que precisavam da configuração de um servidor.
+
+6.	Para verificarmos o estado atual do nosso repositório, devemos executar o comando git status:
+$ git status
+
+7.	Para informar que um determinado arquivo deve ser rastreado, utilizamos o comando:
+$ git add <nomeDoArquivo>
+
+8.	Podemos rastrear todos esses arquivos de uma vez só com o comando git add da seguinte forma:
+$ git add .
+
+9.	O ponto do comando anterior representa todos os arquivos não rastreados do diretório atual e também de todos os seus subdiretórios.
+
+10.	Para rastrear apenas arquivos de um determinado subdiretório, utilizamos o comando git add da seguinte forma:
+git add <nomeDoSubdiretório>
+
+11.	Quando informamos para o Git que queremos rastrear um arquivo, executando git add pela primeira vez, o Git coloca esse arquivo em uma área especial do repositório, chamada de stage.
+
+12.	O diretório que contém nossos arquivos é chamado de diretório de trabalho ou working directory, em inglês.
+
+13.	Uma vez que um arquivo passa a ser rastreado pelo Git, depois de colocá-lo na área de stage com o comando git add, cada mudança nesse arquivo é rastreada e também deve ser colocada na área de stage executando o comando git add novamente:
+$ git add <nomeDoArquivoModificado>
+
+14.	O Git tem um mecanismo que permite ignorarmos arquivos. Basta criarmos um arquivo chamado .gitignore no diretório principal do nosso projeto, com os nomes dos arquivos que queremos ignorar.
+
+15.	É importante que esse arquivo seja rastreado, porque evoluirá junto com o repositório. Por isso, ao criar o .gitignore, não esqueçã de adicioná-lo à área de stage com o comando git add:
+$ git add .gitignore
+
+16.	Se quisermos ignorar todos os arquivos com a extensão .log, por exemplo, colocaríamos *.log no .gitignore. Se quiséssemos ignorar todos os arquivos .bmp do subdiretório imagens, deveríamos inserir imagens/*.bmp.
+
+17.	Há um projeto no GitHub com exemplos de arquivos .gitignore para diversas linguagens de programação e tecnologias: https://github.com/github/gitignore
+
+18.	Para gravar os arquivos e alterações definitivamente no repositório, devemos utilizar o comando git commit com a opção -m para descrever as alterações efetuadas:
+$ git commit -m "<mensagemDoCommit>"
+
+19.	É importante que as mensagens descrevam de maneira sucinta as alterações que foram efetuadas.
+
+20.	Após a execução do comando git commit é exibido um código logo antes da mensagem. Esse código serve como um identificador do commit. Na verdade, foram exibidos apenas os primeiros 7 dígitos desse código, que contém 40 caracteres ao todo.
+
+21. O termo commit é comum em qualquer sistema controlador de versão e siginifica gravar novos arquivos e alterações em arquivos existentes em um repositório. Em português, os termos comitar ou comitado são bem corriqueiros, apesar de não existirem nos dicionários.
+
+
+22.	É possível rastrear as mudanças e comitá-las de uma vez só com a opção -a do comando git commit:
+$ git commit -a -m "<mensagemDoCommit>"
+
+23.	A opção -a do comando git commit já efetua o rastreamento das mudanças, adicionando-as à área de stage. Poderíamos juntas as opções -a e -m utilizando -am da seguinte maneira:
+$ git commit -am "<mensagemDoCommit>"
+
+24.	Sempre que tivermos um arquivo novo, temos que utilizar o comando git add, para que o Git passe a rastreá-lo. Só então poderemos comitá-lo.
+$ git add principal.js
+
+25.	O Git, ao contrário da maioria dos sistemas de controle de versão, possui uma separação entre rastrear as mudanças, adicionando-as na área de stage com o comando git add, e gravar as mudanças no repositório, com o comando git commit.
+	Essa separação entre rastrear e gravar permite que as mudanças que fizemos no código sejam agrupadas de maneira lógica. Dessa forma, podemos montar commits menores, que farão mais sentido posterior as revisarmos o histórico do projeto e ajudarão ao mesclarmos nossas mudanças com as dos outros membros do nosso time.
+
+26.	Para verificar o histórico das mudanças gravadas no repositório, ou seja, os commits efetuados, devemos utilizar o comando git log:
+$ git log
+
+27. Com o comando git log são listadas as mensagens de todos os commits, junto ao código correspondente, autor e data/hora em que foram efetuados.
+
+28.	Se quisermos mostrar apenas um determinada quantidade de commits devemos utilizar a opção -n do comando git log:
+$ git log -n <quantidadeDeCommits>
+
+29. Se quisermos um resumo bem conciso dos commits do nosso projeto, podemos utilizar a opção --oneline do comando git log:
+$ git log --oneline
+
+30.	Podemos mostrar um resumo dos arquivos alterados, com o número de linhas adicionadas e removidas, através da opção --stat do comando git log:
+$ git log --stat
+
+31. Podemos também combinar as várias opções do comando git log. Por exemplo, para mostrar um resumo das alterações dos últimos commits:
+$ git log -n <quantidadeDeCommits> --oneline --stat
+
+32.	A diferença entre os comandos git status e o git log é que, o git status exibe arquivos que estão fora da área de stage, pontos para serem adicionados, e arquivos que estão dentro da área de stage, prontos para serem comitados.
+	Já o git log exibe o histórico das mudanças efetivamente gravadas em um repositório. Ou seja, os commits efetuados.
+
+33.	Se quisermos revisar a modificação efetuada, verificando as diferenças entre o arquivo alterado e o que foi comitado anteriormente, podemos usar o comando git diff:
+$ git diff
+
+34.	Quando tivermos alterações ainda não rastreadas em mais de um arquivo e quisermos verificar o que mudamos em um arquivo específico, basta passarmos o nome desse arquivo como parâmetro para o git diff:
+$ git diff <nomeDoArquivo>
+
+35.	O git diff não poderá ser utilizado para arquivos novos, que ainda não estão sendo rastreados pelo Git (ou seja, que ainda não tiveram o primeiro git add executado).
+
+36.	O comando git diff, quando usando sem parâmetros, mostra a diferença entre os arquivos no diretório de trabalho e a área de stage. Portanto, serve apenas para exibir as mudanças ainda não rastreadas.
+
+37. É possível mostrar as diferenças entre os arquivos na área de stage e a última versão que foi comitada utilizando a opção --staged do comando git diff:
+$ git diff --staged
+
+38.	Para exibir tanto as alterações fora da área de stage como as de dentro precisamos descobrir o código do último commit, em seguida utilizamos o comando git diff passando como parâmetro o código do commit:
+$ git diff <códigoDoCommit>
+
+39.	Pode ser passado para o comando git diff o parâmetro HEAD que pode estar apontando para o último commit. Porém, não é sempre assim, já que o HEAD pode apontar para commits anteriores.
+
+40.	Podemos usar o comando git diff para verificar as diferenças entre dois commits específicos. Para comparar o que foi alterado no nosso último commit em relação aos dois anteriores, devemos utilizar o git diff passando os códigos desses commits:
+$ git diff <commitMenosRecente..<commitMaisRecente>
+
+41.	Podemos obter a mesma saída através do comando:
+$ git diff <commitMaisRecente>~<quantidadeDeCommitsImediatamenteAntes>
+
+42.	Se houvesse alguma modificação ainda não comitada, fora ou dentro da área de stage, as linhas alteradas também seriam mostradas na resposta do comando git diff <códigoDoCommit>~<quantidadeDeCommitsImediatamenteAntes>
+	Já o comando git diff <commitMenosRecente..<commitMaisRecente> não exibe modificações ainda não comitadas, mas apenas as mudanças que aconteceram entre os dois commits especificados.
+
+43.	O comando git status lista os arquivos modificados e o conteúdo da área de stage. Já o comando git diff mostra detalhadamente quais foram essas modificações, além de permitir verificar mudanças entre dois commits.
+
+44.	A remoção do arquivo e adição na área de stage podem ser realizadas de uma vez só através do comando:
+$ git rm <nomeDoArquivo>
+
+45.	Uma outra maneira de adicionar a deleção de um arquivo à área de stage seria executar o comando git add. Porém, esse comando não permite o uso em arquivos removidos, a não ser que seja utilizada a opção --all.
+$ git add <nomeDoArquivo> --all
+
+46.	Um detalhe importante é saber que, apesar de o arquivo ter sido removido, seu conteúdo fica gravado no histórico do repositório. Dessa maneira, é possível obtermos qualquer arquivo que já existiu em nosso repositório.
+	Porém, se por descuido comitarmos algum arquivo grande e depois deletá-lo, nosso repositório não diminuirá de tamanho, já que o histórico será mantido.
+
+47.	Podemos renomear arquivos executando o comando git mv:
+$ git mv <antigoNomeDoArquivo> <novoNomeDoArquivo>
+
+48.	É intessante saber que, se tivéssemos renomeado o arquivo da maneira mais trabalhosa, o Git iria detectar o nosso objetivo, depois que tivéssemos efetuados todos os comandos necessários. Isso acontece porque o Git rastreia o conteúdo dos arquivos, não apenas o nome.
+
+49.	Podemos mover arquivos executando o comando git mv:
+git mv <nomeDoArquivo> <novoCaminhoDoArquivo>
+
+50.	Para o Git não há diferença entre um arquivo movido ou renomeado. No fim das contas, aquele conteúdo(o que é efetivamente rastreado) mudou de local.
+
+51. Para desfazer alterações ainda não rastreadas, ou seja, que ainda não estão na área de stage, voltando ao conteúdo anterior do arquivo, utilizamos o comando git checkout da seguinte forma:
+$ git checkout -- <nomeDoArquivo>
+
+52.	Caso haja alguma mudança já rastreada no arquivo, dentro da área de stage, ao executarmos o comando git checkout, apenas as alterações indesejadas, fora da stage, serão desfeitas. As mudanças que já estavam na stage permanecerão. Serão desfeitas apenas as alterações, que ainda não tinham sido rastreadas.
+
+53.	Podemos utilizar o comando git checkout para recuperar arquivos removidos acidetalmente/manualmente:
+git checkout -- <nomeDoArquivo>
+
+54.	Se quisermos apenas remover da área de stage a mudança efetuada no arquivo, preservando o arquivo modificado, devemos executar o comando git reset:
+$ git reset -- <nomeDoArquivo>
+
+55.	Quando utilizado dessa maneira, apenas informando um arquivo que tem mudanças na área de stage, o comando git reset retira o arquivo da stage mas preserva tudo o que foi modificado nesse arquivo.
+
+56.	Se invocarmos o comando git reset sem nenhum parâmetro, serão retirados todos os arquivos da área de stage. As alterações efetuadas nesses arquivos serão preservadas.
+
+57.	No caso de querermos descartar todas as mudanças nos arquivos ao invocarmos git reset, devemos utilizar a opção --hard.
+	Há um detalhe importante: a opção --hard retira todos os arquivos da área de stage e desfaz todas as alterações nesses arquivos. No fim das contas, o repositório fica exatamente no estado que estava no último commit:
+$ git reset --hard
+
+58.	Se quisermos voltar atrás, desfazendo as alterações no repositório, podemos utilizar o comando git revert:
+$ git revert --no-edit <códigoDoCommit>
+
+59.	Em vez de passar o código do último commit como parâmetro para o git revert, poderíamos ter utilizado HEAD que, no nosso caso, aponta para o último commit.
+
+60.	O comando git revert efetua um novo commit com a versão anterior dos arquivos. 
+
+61. No caso de passarmos um código de commit antigo, apenas as alterações feitas naquele commit serão desfeitas. Isso é algo bastante poderoso!
+	Imagine que você descubra que um bug veio de uma alteração de determinado commit em um conjunto de arquivos. Apenas com um git revert é possível desfazer as alterações que inseriram o bug.
+
+62.	Uma outra forma de desfazer alterações já comitadas é utilizando o comando git reset seguido da opção --hard e de um código de commit:
+$ git reset --hard <códigoDoCommit>
+
+63.	Ao utilizarmos o comando git reset seguido da opção --hard e um código de commit, o histórico do repositório é reescrito.
+	Porém, é importante mantermos todas as alterações no repositório, mesmo que indesejadas. Afinal de contas, estamos utilizando um sistema de controle de versão justamente para ter um histórico fiel da evolução do código de nossos projetos.
