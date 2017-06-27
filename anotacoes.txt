@@ -238,3 +238,67 @@ $ git reset --hard <códigoDoCommit>
 
 63.	Ao utilizarmos o comando git reset seguido da opção --hard e um código de commit, o histórico do repositório é reescrito.
 	Porém, é importante mantermos todas as alterações no repositório, mesmo que indesejadas. Afinal de contas, estamos utilizando um sistema de controle de versão justamente para ter um histórico fiel da evolução do código de nossos projetos.
+
+---------------------------------------
+-Capítulo 3 -- Trabalhando com repositório local
+
+1.	Um repositório remoto nada mais é do que um repositório Git criado em outro computador, chamado de servidor. Para criarmos um repositório remoto, devemos primeiramente utilizar algum computador da empresa que esteja conectado na rede, e criar o repositório Git do projeto neste computador, que passará a ser o servidor central do projeto.
+
+2.	A criação do repositório remoto é feita com o comando git init, da mesma maneira que fizemos para criar o repositório local, entretanto devemos passar o parâmetro --bare ao comando:
+$ git init --bare <nomeDoRepositório>
+
+3.	O parâmetro --bare serve para que o Git não crie um working tree(diretório de trabalho), impedindo que commits sejam efetuados diretamente no servidor. No nosso caso faz sentido, já que os commits serão realizados pelos desenvolvedores, localmente, em seus computadores, e depois esses commits serão enviados e armazenados no repositório remoto, localizado no servidor.
+
+4.	Para ensinar ao Git onde se encontra o nosso repositório remoto, devemos utilizar o comando git remote add, no qual informamos o endereço do repositório remoto. Ao executar o comando git remote add devemos informar o name do repositório remoto e sua url:
+git remote add <aliasParaRepositório> file://<endereçoIPDoServidor>/<diretórioDoRepositórioRemoto>
+
+5.	É possível adicionar mais de um repositório remoto, desde que cada um tenha seu nome distinto. Isto pode ser útil se precisarmos enviar os commits para mais de um servidor.
+
+6.	Para listar os repositórios remotos que foram adicionados devemos utilizar o comando git remote:
+$ git remote
+
+7.	Para que também seja exibida a url devemos adicionar o parâmetro -v ao comando git remote:
+$ git remote -v
+
+8.	O repositório remoto é listado duas vezes quando passado o parâmetro -v. Isso acontece pos o Git permite que tenhamos duas URLs distintas para o mesmo repositório remoto, sendo uma para leitura (fetch) e outra para escrita (push). Isto pode ser útil se precisarmos utilizar protocolos distintos para leitura e escrita.
+
+9.	É possível alterar o name de um reposotório remoto utilizando o comando git remote rename:
+$ git remote rename <nomeAtual> <novoNome>
+
+10.	Para alterarmos a url do repositório remoto, podemos utilizar o comando git remote ser-url, passando como parâmetro o name do repositório remoto e a nova url:
+$ git remote set-url <nomeDoRepositório> <novaURL>
+
+11.	Para enviar os commits locais, que ainda não existem no servidor, devemos utilizar o comando git push, informando o name do repositório remoto seguindo do nome da branch:
+$ git push <nomeDoRepositórioRemoto> <nomeDaBranch>
+
+12.	Para obtermos uma cópia de um repositório Git, devemos utilizar o comando git clone informando a URL do repositório a ser clonado:
+$ git clone file://<endereçoIPDoServidor>/<diretórioDoRepositórioRemoto>
+
+13.	Por padrão, o Git criará um diretório com o mesmo nome do repositório remoto, e também já adicionará um repositório remoto com o name origin, que aponta para a URL clonada.
+
+14.	Para que possamos visualizar as alterações e commits realizados, devemos sincronizar o nosso repositório local com o servidor, puxando os novos commits para o nosso repositório local.
+	A sincronização do repositório local com o servidor é feita com o uso do comando git pull, onde devemos informar o name do repositório remoto que queremos sincronizar, e o nome da branch local a ser atualizada:
+$ git pull <nomeDoRepositórioRemoto> <nomeDaBranchLocal>
+
+15.	O Git é um sistema de controle de versão distribuído, e por isso não depende de um servidor central, diferentemente do CVS e SVN.
+	Entretando, é possível trabalhar com o Git de maneira centralizada, onde um servidor será o repositório central, recebendo os commits de todos os desenvolvedores, e estes, por sua vez, sincronizando seus repositórios locais com o servidor, frequentemente, para obter os novos commits. Esta é maneira mais comum de utilização do Git.
+
+16.	Quando adicionamos ou clonamos um repositório Git, devemos informar a url do repositório, que utiliza algum protocolo para comunicação e transferência de dados. O Git suporta quatro protocolos para comunicação e transferência de dados: Local, SSH, Git e HTTP/HTTPS.
+
+17.	O protocolo local pode ser utilizado quando o repositório remoto estiver localizado no mesmo computador em que se encontra o repositório local, ou em outro computador que esteja conectado na mesma rede.
+	A utilização do protocolo local é feita com o uso do prefixo file:// na URL do repositório a ser clonado:
+$ git clone file://<enderecoDoRepositórioRemoto>
+
+18.	O protocolo SSH é, provavelmente, o mais utilizado por ser rápido, seguro, simples de configurar e por suportar tanto a leitura quanto a escrita de dados.
+	O uso do protocolo SSH é feito com a URL seguindo o padrão usuario@servidor:<endereçoIP>/repositório.git.
+
+19.	O Git possui um protocolo próprio, que é similar ao SSH, mas sem o mecanismo de autenticação. Por conta disso, ele acaba sendo mais rápido; entretando não é seguro, e seu uso é apenas para leitura.
+	Para clonar um repositório utilizando o protocolo Git, a URL deve possuir o prefixo git://:
+$git clone git://<endereçoIP>/<diretórioDoRepositório>
+
+20.	O Git também suporta o protocolo HTTP, que é bastante utilizado quando estamos trabalhando em empresas que possuem um controle rígido de segurança.
+	Para clonar um repositório utilizando o protocolo HTTP, a URL deve possuir o prefixo http://:
+$ git clone http://<enderecoIP><diretorioDoRepositório>
+	
+	Também é possível utilizar o protocolo HTTPS, que adiciona uma camada de segurança sobre o HTTP, com a utilização do protocolo SSL/TLS:
+$ git clone https://<endereçoIP>/<diretórioDoRepositório>
