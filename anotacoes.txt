@@ -240,7 +240,7 @@ $ git reset --hard <códigoDoCommit>
 	Porém, é importante mantermos todas as alterações no repositório, mesmo que indesejadas. Afinal de contas, estamos utilizando um sistema de controle de versão justamente para ter um histórico fiel da evolução do código de nossos projetos.
 
 ---------------------------------------
--Capítulo 3 -- Trabalhando com repositório local
+-Capítulo 4 -- Trabalhando com repositório remoto
 
 1.	Um repositório remoto nada mais é do que um repositório Git criado em outro computador, chamado de servidor. Para criarmos um repositório remoto, devemos primeiramente utilizar algum computador da empresa que esteja conectado na rede, e criar o repositório Git do projeto neste computador, que passará a ser o servidor central do projeto.
 
@@ -302,3 +302,39 @@ $ git clone http://<enderecoIP><diretorioDoRepositório>
 	
 	Também é possível utilizar o protocolo HTTPS, que adiciona uma camada de segurança sobre o HTTP, com a utilização do protocolo SSL/TLS:
 $ git clone https://<endereçoIP>/<diretórioDoRepositório>
+
+---------------------------------------
+-Capítulo 5 -- Hospedando o repositório no GitHub
+
+1.	Existem alguns serviços para hospedagem de projetos na internet, que permitem a utilização de ferramentas de controle de versão. A ideia é que você possa hospedar seus projetos, juntamente com os repositórios, na internet, e assim será possível acessá-los de qualquer lugar do mundo.
+	Dentre os principais serviços que suportam o Git, estão: 
+	° GitHub
+	° Bitbucket
+	° Google Code
+
+2.	O GitHub é também uma ferramenta colaborativa, pois nos permite interagir nos repositórios, por meio de algumas funcionalidades como:
+	° Issue Tracker: para criação e gestão de bugs e milestones do projeto;
+	° Pull Requests: para que outros usuários possam enviar seus commits com 		  alterações no projeto, ou commits com correções de bugs;
+	° Commit Comments: para que os usuários possam comentar e discutir sobre as 	  modificações no código, de um determinado commit.
+
+3.	No GitHub é possível criar organizações, e dentro delas criar equipes, para que então seja possível vincular determinadas usuários a determinadas equipes, bem como vincular as equipes aos repositórios em que elas vão trabalhar. Isso é muito útil para que empresas que possuem muitos projetos e muitos colaboradores, pois permite uma melhor organização.
+
+4.	No GitHub é possível pesquisar por repositórios ou usuários. É possível navegar pelo código-fone, visualizar a descrição do projeto, os commits, os usuários que contribuem para o projeto, e até mesmo baixar o repositório compactado em um arquivo zip.
+
+5.	O GitHub possui alguns planos que podemos contratar, sendo um gratuito, e outros com custos mensais.
+	No plano gratuito do GitHub, o usuário não tem nenhum custo, entretanto ele somente poderá cirar repositórios públicos, ou seja, qualquer pessoas poderá encontrar seus repositórios e inclusive ter acesso ao código-fonte.
+	Mas muitas empresas possuem projetos que são restritos, e não podem ter o código-fonte acessível a qualquer pessoa. Neste caso, a empresa deverá contratar algum dos planos pagos oferecidos pelo GitHub.
+	A diferença entre os planos pagos está na quantidade de repositórios privados que poderão ser criados.
+
+6.	Como utilizamos o protocolo https ao adicionar o repositório remoto, sempre que formos sincronizar nosso repositório local, o Git nos solicitrará o usuário e senha cadastrados no GitHub.
+
+7.	Não é possível enviar commits para repositórios que possimos permissão.
+
+8.	A solução do GitHub para colaboração com projetos open source, foi uma funcionalidade chamada pull requests.
+
+9.	O botão Fork do GitHub criará um cópia do repositório do VRaptor no nosso usuário do GitHub.
+
+10.	Após realizar as alterações e commits no projeto, conseguiremos realizar o push normalmente, pois o repositório remoto no GitHub pertence ao nosso usuário.
+
+11.	Para que os commits sejam integrados ao repositório original do projeto, devemos enviar um Pull Request, solicitando que seja feito um pull dos nossos commits.
+	Após criarmos o pull request, o usuario receberá um notificação do GitHub, e poderá efetuar o pull dos nossos commits, integrando-os ao repositório original do projeto. Claro, isso após uma análise das alterações efetuadas em nossos commits.
