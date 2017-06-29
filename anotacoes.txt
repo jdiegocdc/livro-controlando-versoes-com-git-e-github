@@ -477,3 +477,36 @@ $ git pull --rebase
 $ git push origin :<nomeDaBranch>
 
 19.	No caso da branch lá do servidor ter um nome diferente da branch local, ao deletá-lo devemos utilizar o nome da branch do servidor.
+
+---------------------------------------
+-Capítulo 8 -- Controlando versões do código com tags
+
+1.	Ao liberarmos uma nova versão de um projeto para implatação em produção, é uma boa prática tirarmos uma foto de código nesse momento. Se houver algum erro, saberemos exatamente o código que está sendo usado em produção e será mais fácil caçar a origem da falha.
+	Em sistemas de controle de versão, essas fotos de um determinado instante de um repositório são chamados de tags.
+	No Git, uma tag é simplesmente um apontador fixo para um commit específico. Ao contrário de branches, esse apontador não avança com novos commits.
+	Em geral, criamos tags com nomes como v1.0, v1.1, v2.0 e assim por diante. Cada equipe deve definir seu padrão.
+
+2.	Para criarmos uma tag no Git, devemos executar o comando git tag:
+$ git tag <nomeDaTag>
+
+3.	Se quisermos listar as tags do nosso repositório, basta executarmos:
+$ git tag
+
+4.	Podemos criar uma tag para um commit passado:
+$ git tag <nomeDaTag> <códigoDoCommit>
+
+5.	Para deletar uma tag, passamos a opção -d para o comando git tag:
+$ git tag -d <nomeDaTag>
+
+6.	Se desejarmos manter mais informações como quando uma tag foi criada, que a criou, além de termos uma mensagem descritiva, devemos criar tags anotadas.
+	Para criarmos uma tag anotada, basta usarmos a opção -a do comando git tag e informar uma mensagem com a opção -m:
+$ git tag -a <nomeDaTag> -m "<mensagem>"
+
+7.	Podemos exibir as informações de uma tag anotada com o comando git show:
+$ git show -s <nomeDaTag>
+
+8.	Para compartilhar tags, fazemos de maneira parecida com o que fizemos com branches, utilizando o comando git push:
+$ git push <nomeDoRepositorioRemoto> <nomeDaTag>
+
+9.	Se quisermos enviar todas as novas tags do repositório local para um repositório remoto podemos utilizar o comando git push com a opção --tags:
+$ git push origin --tags
