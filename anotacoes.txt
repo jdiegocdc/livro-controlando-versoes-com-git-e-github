@@ -338,3 +338,81 @@ $ git clone https://<endereçoIP>/<diretórioDoRepositório>
 
 11.	Para que os commits sejam integrados ao repositório original do projeto, devemos enviar um Pull Request, solicitando que seja feito um pull dos nossos commits.
 	Após criarmos o pull request, o usuario receberá um notificação do GitHub, e poderá efetuar o pull dos nossos commits, integrando-os ao repositório original do projeto. Claro, isso após uma análise das alterações efetuadas em nossos commits.
+
+---------------------------------------
+-Capítulo 6 -- Organizando o trabalho com branches
+
+1.	A maioria dos sistemas de controle de versão permite trabalho em paralelo através de branches. Uma branch é uma linha independente de desenvolvimento em que podemos comitar novas versões do código sem afetar outras branches.
+	Em muitos sistemas de controle de versão, utilizar branches é algo bastante lento e trabalhoso. Porém, a estrutura interna do Git permite lidarmos com branches de maneira muito rápida e leve.
+
+2.  Para listar as branches do nosso repositório, devemos executar o comando git brunch:
+$ git branch
+
+3.  O Git possui por padrão uma branch principal chamada master.
+
+4.  O asterisco (*) na da branch indica que esta é a branch atual, em que estamos trabalhando.
+
+5.  No Git toda branch é basicamente um apontador para um commit. A cada novo commit que fazemos, a branch é movida automaticamente, passando a apontar para esse novo commit. Por isso por padrão , a branch master aponta para o último commit que fizemos.
+
+6.  Se quisermos listar as branches existentes no nosso repositório com os commits associados, poderiamos utilizar a opção -v do comando git branch:
+$ git branch -v
+
+7.  É importante sabermos uma das informações que um commit armazena, o commit pai, que é o que foi efetuado anteriormente. Um commit poder ter vários pais.
+
+8.  Podemos observar os commits com seus respectivos pais executando o comando git log com a opção --parents:
+$ git log parents
+
+9.  Para verificarmos o commit para o qual a master está apontando passamos a opção --decorate para o comando git log:
+$ git log --decorate
+
+10. Juntando as opções, podemos executar git log --oneline --decorate --parents para exibir o histórico resumido do nosso repositório com o commit para o qual a master está apontando e os commits pai de cada commit:
+$ git log --oneline --decorate --parents
+
+11. Para criarmos uma nova branch executamos o comando git branch com a seguir:
+$ git branch <nomeDaBranch>
+
+12. O HEAD é um apontador especial que indica qual é a branch na qual estamos trabalhando.
+
+13. Para trocarmos de branch devemos executar o comando git checkout:
+$ git checkout design
+
+14. O Git checkout, além de trocar a branch atual, também pode ser usado para descartar mudanças de um arquivo que ainda não está na área de stage. Para descartarmos as mudanças devemos executar o comando git chekcout -- <nomeDoArquivo>.
+    Na verdade, a opção -- não estritamente necessária. Porém, é uma boa prática, já que serve para informar que se trata de um arquivo. Dessa maneira, ajuda a evitar problemas caso uma branch tenha o mesmo nome de algum arquivo.
+
+15. Para criarmos e mudarmos para uma nova branch de uma só vez, passamos a opção -b para o comando git checkout:
+$ git checkout -b loja
+
+16. Para remover uma branch, devemos utilizar a opção -d do comando git branch. Não é possível remover uma branch enquanto estivermos nela:
+git branch -d <nomeDaBrunch>
+
+17. Não é possível deletar com a opção -d uma branch que possui commits ainda não aplicados em outras branches.
+    Para removermos uma branch que possui commits devemos utilizar a opção -D do comando git branch:
+$ git branch -D <nomeDaBranch>
+
+18.	Podemos verificar as branches ainda não mescladas com a opção --no-merged do comando git branch:
+$ git branch --no-merged
+
+19.	O comando git branch também tem a opção --merged:
+$ git branch --merged
+
+20.	Para juntarmos todas as alterações que fizemos, mesclando-as, podemos utilizar o comando git merge:
+$ git merge <nomeDaBranch> -m "<mensagem>"
+
+21.	É importante saber que, quando é efetuado um merge, é criado um novo commit com as alterações que estamos mesclando e com a mensagem que informamos.
+
+22.	Há uma situação em que um git merge não irá gerar um commit de merge: quando a branch de destino não teve nenhum commit a mais desde que a branch a ser mesclada foi criada.
+	Esse tipo de merge é chamado de fast-forward.
+	É possível evitar o uso de fast-forward, forçando a criação de um commit de merge, utilizando a opção --no-off do comando git merge.
+
+23.	Há uma maneira alternativa de mesclar as alterações de duas branches que simplifica o histórico do projeto. Em vez de utilizar git merge, é possível utilizar o git rebase, onde o histórico dos commits é linearizado:
+$ git rebase design
+
+24.	No caso de um fast-forward basta apontar a brach de destino par o commit mais novo da branch sendo mesclada.
+
+25.	O git merge e o git rebase têm o mesmo efeito quando há um fast-forward.
+
+26.	O nome rebase vem da ideia de refazer o commit base de uma branch.
+	Para isso o Git precisa criar novos commits, mudando os ancestrais de commits anteriores.
+
+27.	Utilizar merge mantém um registro fiel do que ocorreu com o nosso repositório, mas os commits de merge complicam tarefas como navegar pelo código antigo e revisar código novo.
+	Já o rebase simplifica o histórico, mas perdemos informação sobre nosso repositório e alguns commits são reescritos. No caso de conflitos, as coisas podem ficar especialmente complicadas.
