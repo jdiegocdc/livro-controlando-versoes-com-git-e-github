@@ -416,3 +416,64 @@ $ git rebase design
 
 27.	Utilizar merge mantém um registro fiel do que ocorreu com o nosso repositório, mas os commits de merge complicam tarefas como navegar pelo código antigo e revisar código novo.
 	Já o rebase simplifica o histórico, mas perdemos informação sobre nosso repositório e alguns commits são reescritos. No caso de conflitos, as coisas podem ficar especialmente complicadas.
+
+---------------------------------------
+-Capítulo 7 -- Trabalhando em equipe com branches remotas
+
+1.	No Git, temos branches remotas que apontam para branches que estão nos repositórios remotos configurados.
+	Para diferenciá-las das branches locais, o nome de uma branch remota é o nome do remote seguido do nome da branch.
+	Ao contrário de branches locais, que são movidas a cada commit, branches remotas só são movidas ao fazermos operações que envolvam comunicação de rede como git push, git pull e também o comando git fetch. Portanto, uma branch remota representa a situação da última vez que houve comunicação com o repositório remoto.
+
+2.	Podemos listar as branches remotas passando a opção -r para o comando git branch:
+$ git branch -r
+
+3.	Se quisermos mostrar tanto as branches locais como as remotas, podemos utilizar o comando git branch com a opção -a:
+$ git branch -a
+
+4.	Para vermos para quais commits as branches remotas estão apontando, podemos utilizar o comando git branch com a opção -v:
+$ git branch -r -v
+
+5.	Para compartilhar uma branch devemos informar os nomes do remote e da branch para o comando git push:
+$ git pusch <nomeDoRemote> <nomeDaBranch>
+
+6.	O comando anterior envia para o remote <nomeDoRemote> os commits da branch <nomeDaBranch>
+
+7.	Clonar um repositório nomeando o repositório local:
+$ git clone htpps://github.com/<nomeDoUsuario>/<nomeDoRepositório> <repositórioLocalASerCriado>
+
+8.	Criar uma branch local a partir de uma branch remota com o comando git checkout:
+$ git checkout -b <nomeDaBranchLocalASerCriada> <nomeDaBranchRemota>
+
+9.	Branches locais criadas a partir de branches remotas são chamadas de tracking branches.
+
+10.	Uma outra maneira, mais sucinta, de criar uma tracking branch é utilizar a opção -t do comando git checkout:
+$ git checkout -t <nomeDaBranchRemota>
+
+11.	Para obtermos os commits de uma branch remota no nosso repositório, podemos executar o comando git fetch:
+$ git fetch origin
+
+12.	Para mesclarmos branches locais e remotas usamos o comando git merge:
+$ git merge <nomeDaBranchASerMesclada> -m "<mensagem>"
+
+13.	Em geral, não queremos alterar o histórico de commits da branch local master. Mas é mais importante ainda evitar mudanças nos commits da branch remota origin/master, que é compartilhada por todos os membros da nossa equipe.
+	Uma alternativa bastante utilizada é não comitar diretamente na branch local master, mas em uma outra branch local específica para a funcionalidade sendo desenvolvida. Então, faríamos o rebase da origin/master nesta branch local, que teria seu histórico modificado. Dessa forma, a master ficaria intacta.
+	A final da funcionalidade, a branch local da funcionalidade teria um merge feito na branch local master.
+
+14.	Para obtermos e mesclarmos os novos commits de uma branch remota com uma branch local poderíamos ter usado um comando só:
+$ git pull
+
+15.	O comando anterior vai ter o mesmo efeito de um git fetch origin seguido de um git merge origin/master.
+
+16.	Se desejássemos que o git pull tivesse um efeito parecido com git fetch origin seguido de um git rebase origin/master, poderiamos ter passado a opção --rebase:
+$ git pull --rebase
+
+17. Sugestões de de uso git pull e git pull --rebase:
+	° Utilizar um git pull --rebase para obter mudanças remotas. É uma prática segura porque nossos novos commits locais ainda não foram compartilhados, ou seja, outros membros nem sabem da existência desses commits. Por isso alterá-los não traz grandes problemas.
+	° Ao trabalharmos em uma nova funcionalidade utilizando uma branch marcamos sua entrega fazendo um merge. Assim, conseguimos ter uma boa ideia de quando a funcionalidade começou a ser desenvolvida e quando foi reintegrada à branch master.
+	° Se estivermos trabalhando sozinho na nova funcionalidade, podemos fazer rebases periódicos da master na nossa branch para obter código novo, porém deixando o histórico da branch bem limpo.
+	° É interessante fazer o push da nossa branch solitária em um repositório remoto, para backup. Mas é importante evitar que alguém faça checkout.
+
+18.	Para removermos definitivamente uma branch remota lá no GitHub, devemos executar:
+$ git push origin :<nomeDaBranch>
+
+19.	No caso da branch lá do servidor ter um nome diferente da branch local, ao deletá-lo devemos utilizar o nome da branch do servidor.
