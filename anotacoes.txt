@@ -529,3 +529,53 @@ $ git mergetool
 
 6.	Para definir uma ferramente padrão para resolução de conflitos podemos utilizar a configuração merge.tool.
 	Por exemplo, para sempre utilizar o Meld, poderíamos executar git config --global merge.tool meld. O comando meld deve estar no PATH do sistema operacional.
+
+---------------------------------------
+-Capítulo 10 -- Maneiras de trabalhar com Git
+
+1.	Uma das decisões que precisamos fazer é o modelo de distribuição derepositório a ser adotado, definindo como organizar os repositórios remotos. Os modelos mais utilizados são:
+	° Apenas um repositório remoto, central, para onde os repositórios locais apontam;
+	° Cada desenvolvedor tem seu fork, um repositório remoto que é uma cópia do projeto, utilizando um repositório central para integração;
+	° Uma hierarquia de repositórios para integração.
+
+2.	Outra coisa que precisamos decidir é o modelo de branches a ser utilizado do nosso projeto. Alguns dos modelos mais comuns são:
+	° Utilizar apenas a branch master;
+	° Ter uma branch para cada nova funcionalidade, deixando a master para código pronto para ser entregue;
+	° Ter algumas branches por etapa de desenvolvimento, como uma branch de longo prazo para código ainda em construção e uma de curto prazo para correções de bugs urgents.
+
+3.	Um dos fluxos de trabalho mais simples é utilizar apenas um repositório central hospedado, por exemplo, no GitHub, comitando tudo diretamente na branch local master.
+	Para enviar os commits locais, cada desenvolvedor faz um push para o repositório central. Por isso, todos os membros da equipe devem ter permissões de push.
+	Esse fluxo de trabalho é preferencialmente utilizado por pequenas equipes ou na adoção do Git. Como a equipe é pequena, muito provavelmente o projeto será pequeno e teremos controle no ritmo das entregas, não precisando de um fluxo mais poderoso (e complexo).
+
+4.	Podemos utilizar branches para isolar o código de novas funcionalidades ou alterações em funcionalidades existentes. A branch master passa a ser tratada de maneira especial, ficando estável durante todo o desenvolvimento do projeto. Só quando a funcionalidade estiver pronta, é feito um merge da branch da funcionalidade na master.
+	Se for preciso realizar uma correção urgente, pode ser utilizada  a branch master diretamente. Para correções ou alterações mais demoradas, podem ser criadas branches par segregar os commits da correção.
+	Essa maneira de trabalhar também é chamada de feature branching ou topic branching.
+	Esse fluxo de trabalho é utilizado em projetos pouco maiores, principalmente se já tiverem algumas entregas fáceis. É importante que a equipe tenha familiaridade no uso do Git.
+	Para projetos que já estão a todo vapor, com melhorias e correções que precisam ser feitas de imediato, isolar código que ainda está sendo desenvolvido é importante. Com o uso de uma branch para cada funcionalidade, podemos organizar o desenvolvimento das novas funcionalidades de maneira a não afetar demandas urgentes.
+	Para que esse fluxo seja usado com fluência, é preciso que os desenvolvedores já estejam confortáveis com o uso básico do Git.
+
+5.	Ao comitarmos um novo código em uma branch separada para uma funcionalidade específica, mantemos a branch local master estável, mas corremos o risco de adiar demais a integração entre os códigos das novas funcionalidades. Essa demora pode levar a defeitos que deixariam nossos clientes insatisfeitos.
+	Para evitar a integração tardia das funcionalidades, poderíamos ter uma branch para código ainda em desenvolvimento. Seria uma branch de longo prazo, que existiria enquanto o projeto estiver sendo desenvolvido. A branch master teria código já pronto pra ser entregue. Já a branch de desenvolvimento teria código para a próxima entrega. Quando tivermos um ponto estável no novo código, faríamos um merge da branch de desenvolvimento na branch master.
+	Podemos continuar utilizando branches por funcionalidade mas, agora criando-as a partir da branch de desenvolvimento. Periodicamente, poderíamos efetuar um merge precoce das branches das funcionalidades, mesmo antes de o código estar totalmente finalizado. Assim evitaríamos a integração tarde e deixaríamos de afetar a branch master.
+	Seriamos interessante termos branches de release, para comitarmos o código referente a uma determinada entrega, como correções de última hora de pequenos bugs descobertos logo antes de liberar uma versão.
+	Para bugs urgentes, que afetam versões em produção, poderíamos criar uma branch de hotfix. Uma branch de hotfix é de curto praz e, depois de feito o merge, podemos apagá-la.
+	Esse fluxo de trabalho é utilizado em projetos complexos, que já tiveram várias entregas e com diversas novas funcionalidades em desenvolvimento. A equipe já deve ter um bom domínio do Git.
+	Esse fluxo que branches por etapa de desenvolvimento deixa o trabalho bastante organizado. A branch de desenvolvimento serve com uma branch de integraçao para as diferentes branches de funcionalidade. Já a branch master não é afetada pelo dia a dia, ficando bastante estável porque só tem novo código nos momentos de entrega e correções urgentes. Ajustes finos e código para preparar a entrega tem seu lugar, nas branches de release. Bugs urgentes podem ser corrigidos nas branches de hotfix.
+	Devido à complexidade no uso das variadas branches, para trabalhar dessa maneira, o domínio dos conceitos do Git pelos membros da equipe é bastante importante.
+
+6.	Utilizar um repositório central é algo bastante comum para projetos internos de empresas. Já para projetos open source precisamos de uma maneira mais flexível, que não necessite de permissões de push para as dezenas ou centenas de colabores do nosso projeto.
+	Serviços como o GitHub permitem que um colaborador faça forks de um projeto, criando uma cópia pública do repositório. Essa cópia fica puclicada na web, servindo como o repositório remoto do colaborador. Assim, os colaboradores podem comitar mudanças em suas cópias do projeto, sem precisar de permissões de push para o projeto original.
+	O colaborador pode criar um repositório local que aponta par ao seu repositório remoto. Depois de commitar algumas modificações, pode ser feito o push para sua cópia do projeto. Se desejar, pode até liberar acesso de push ao seu repositório remoto para outras pessoas colaborarem na sua cópia.
+	Quando o mantenedor estiver satisfeito, é possível aceitar o pull request, aplicando as mudanças no repositório  original.
+	É interessante que o colaborador faça seus commits em uma branch de funcionalidade, separada da master. Dessa maneira, na hora de aplicar o pull request, o mantenedor do projeto original teria os commits do colaborador em uma branch separada, podendo comitar melhorias. Também é possível utilizar branches por etapa de desenvolvimento para projetos open source maiores.
+	Essa abordagem é utilizada em projetos open source de pequeno ou médio porte.
+	Para projeto open source muito grandes, com milhares de colaboradores, o número de pull requests seria tão grande que tornaria inviável o uso desse fluxo.
+	Também é possível utilizar esse modelo em projetos de empresas, no caso de projetos que tenham colaboradores externos e/ou não confiáveis.
+
+7.	Para projetos open source como o kernel do Linux, que milhões de linhas de código e milhares de colaboradores, utilizar o fluxo de trabalho anterior torna-se inviável.
+	O número de pull requests criados seria enorme. Com apenas um mantenedor, seria impossível dar vazão às colaborações.
+	Para esse tipo de projeto, o mantenedor do projeto original pode ficar como um ditador benevolente, que tem a última palavra sobre o código do projeto mas que aceitas sugestões. No caso do Linux, o ditador é Linus Torvalds.
+	O ditador elegeria colaboradores que se mostraram competentes no passado para manter repositórios públicos com cópias do projeto. Essas cópias em geral, teriam um foco em algum módulo específico do projeto. Os eleitos pelo ditador serviriam como tenentes, recebendo pull requests dos milhares de outros colaboradores e revisando o código, filtrando apenas as colaborações realmente boas.
+	Um novo colaborador teria de escolher um dos repositórios dos tenentes para fazer seu fork do projeto, provavelmente considerando o módulo em que quer colaborar. Depois de feitos seus commits, faria o push para seu repositório. Então, poderia fazer um pull request para seu tenente, que faria uma revisão e daria um feedback.
+	Quando apropriado, o tenente faria pull requests para o repositório do ditador, sinalizando um pacote interessante de mudanças.
+	Esse tipo de abordagem é utilizada em projetos open source grandes, com milhares de colaboradores.
