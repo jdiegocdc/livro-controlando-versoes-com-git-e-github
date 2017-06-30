@@ -510,3 +510,22 @@ $ git push <nomeDoRepositorioRemoto> <nomeDaTag>
 
 9.	Se quisermos enviar todas as novas tags do repositório local para um repositório remoto podemos utilizar o comando git push com a opção --tags:
 $ git push origin --tags
+
+-Capítulo 9 -- Lidando com conflitos
+
+1.	O Git consegue fazer o merge automático, mesclando sem problemas as alterações em um mesmo arquivo alterado em áreas distintas.
+
+2.	Para informarmos para o Git que resolvemos o conflito no arquivo, temos que adicioná-lo à área de stage executando git add:
+$ git add <nomeDoArquivo>
+
+3. Para finalizar um git rebase após um conflito devemos passar a opção --continue:
+$ git rebase --continue
+
+4.	Se quiséssemos abortar o rebase, voltando à situação antes da tentativa de mesclagem, poderíamos executar git rebase --abort.
+	Também poderíamos simplesmente ignorar o commit que gerou o conflito, pulando-o executando git rebase --skip. Essa opção tem ser usada com cuidado. Só faz sentido quando exatamente a mesma alteração foi feita na branch sendo mesclada.
+
+5.	Com Git, podemos invocar uma ferramenta de resolução de conflitos com o comando git mergetool:
+$ git mergetool
+
+6.	Para definir uma ferramente padrão para resolução de conflitos podemos utilizar a configuração merge.tool.
+	Por exemplo, para sempre utilizar o Meld, poderíamos executar git config --global merge.tool meld. O comando meld deve estar no PATH do sistema operacional.
